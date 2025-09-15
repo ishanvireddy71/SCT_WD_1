@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:sans-serif;min-height:150vh}
+    nav{
+      position:fixed;top:0;left:0;width:100%;
+      display:flex;justify-content:space-between;align-items:center;
+      padding:10px 30px;transition:.3s;z-index:100;
+      background:transparent
+    }
+    nav.scrolled{background:#333;box-shadow:0 2px 5px rgba(0,0,0,.3)}
+    nav ul{list-style:none;display:flex;gap:15px}
+    nav ul li a{color:#fff;text-decoration:none;transition:.3s}
+    nav ul li a:hover{color:rgb(17, 17, 2);border-bottom:2px solid yellow}
+    .menu{display:none;cursor:pointer;color:#fff;font-size:20px}
+    @media(max-width:700px){
+      nav ul{flex-direction:column;position:absolute;top:50px;right:0;
+        background:#222;display:none;padding:10px}
+      nav ul.show{display:flex}
+      .menu{display:block}
+    }
+  </style>
+</head>
+<body>
+  <nav id="nav">
+    <div class="logo" style="color:#fff">Logo</div>
+    <div class="menu">☰</div>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+  <script>
+    const nav=document.getElementById("nav"),
+          menu=document.querySelector(".menu"),
+          ul=document.querySelector("nav ul");
+    window.onscroll=()=>nav.classList.toggle("scrolled",scrollY>50);
+    menu.onclick=()=>ul.classList.toggle("show");
+  </script>
+</body>
+</html>
